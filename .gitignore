@@ -1,0 +1,19 @@
+# ignore log files and databases
+*.log
+*.sql
+*.sqlite
+
+#Laravel Specific files
+/node_modules
+/public/.htaccess
+/public/hot
+/public/storage
+/storage/*.key
+/vendor
+.env
+.env.backup
+.phpunit.result.cache
+Homestead.json
+Homestead.yaml
+npm-debug.log
+yarn-error.log
