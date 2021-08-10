@@ -1,0 +1,319 @@
+[app]
+【ディレクトリ】
+--
+Http
+==> Http
+
+[Http]
+【ディレクトリ】
+--
+Controllers
+==> Controllers
+
+[Controllers]
+【ディレクトリ】
+--
+Auth(1)
+==> Auth(1)
+
+[Auth(1)]
+【ディレクトリ】
+--
+LoginController.php
+==> LoginController.php
+
+[LoginController.php]
+【PGM】
+--
+use AuthenticatesUsers;
+==> AuthenticatesUsers.php
+変数:$redirectTo
+==> $redirectTo
+
+[$redirectTo]
+【変数】
+
+[vendor]
+【ディレクトリ】
+--
+laravel
+==> laravel
+
+[laravel]
+【ディレクトリ】
+--
+framework
+==> framework
+
+[framework]
+【ディレクトリ】
+--
+src
+==> src
+
+[src]
+【ディレクトリ】
+--
+Illuminate
+==> Illuminate
+
+[Illuminate]
+【ディレクトリ】
+--
+Foundation
+==> Foundation
+
+[Foundation]
+【ディレクトリ】
+--
+Auth(2)
+==> Auth(2)
+
+[Auth(2)]
+【ディレクトリ】
+--
+AuthenticatesUsers.php
+==> AuthenticatesUsers.php
+ThrottlesLogins.php
+==> ThrottlesLogins.php
+RedirectsUsers.php
+==> RedirectsUsers.php
+
+[Cache]
+【ディレクトリ】
+--
+RateLimiter.php
+==> RateLimiter.php
+
+[AuthenticatesUsers.php]
+【トレイト】
+--
+use ThrottlesLogins;
+==> ThrottlesLogins.php
+showLoginForm
+==> showLoginForm
+login
+==> login
+validateLogin
+==> validateLogin
+username
+==> username
+attemptLogin
+==> attemptLogin
+guard
+==> guard
+sendLoginResponse
+==> sendLoginResponse
+
+[showLoginForm]
+【アクションメソッド】
+--
+return view('auth.login');
+==> login.blade.php
+
+[login]
+【アクションメソッド】
+--
+判定:method_exists($this, 'hasTooManyLoginAttempts')
+==> hasTooManyLoginAttempts
+判定:$this→hasTooManyLoginAttempts($request)
+==> hasTooManyLoginAttempts
+return $this→sendLockoutResponse($request);
+==> sendLockoutResponse
+判定:attemptLogin
+==> attemptLogin
+return $this→sendLoginResponse($request);
+==> sendLoginResponse
+$this→incrementLoginAttempts($request);
+==> incrementLoginAttempts
+return $this→sendFailedLoginResponse($request);
+==> sendFailedLoginResponse
+
+[validateLogin]
+【メソッド】
+$request→validateで
+emailとpasswordのバリデーション
+--
+$this→username()
+==> username
+
+[username]
+【メソッド】
+return 'email';
+--
+
+[attemptLogin]
+【メソッド】
+パスワードが一致するかのチェック
+--
+return $this→guard()→attempt
+==> guard
+
+[guard]
+【メソッド】
+認証時に使用するガードを取得します。
+\Illuminate\Contracts\Auth\StatefulGuard
+を参照
+--
+
+[sendLoginResponse]
+【メソッド】
+・セッションの再作成
+・ログイン試行回数のクリア(ログインに成功したので)
+・redirectToプロパティで指定したURLヘリダイレクト
+--
+リダイレクト:$this→redirectPath()
+==> redirectPath
+
+[sendFailedLoginResponse]
+【メソッド】
+ログイン失敗のメッセージとともに
+ログイン画面をレスポンス
+--
+
+[ThrottlesLogins.php]
+【トレイト】
+--
+hasTooManyLoginAttempts
+==> hasTooManyLoginAttempts
+maxAttempts
+==> maxAttempts
+decayMinutes
+==> decayMinutes
+sendLockoutResponse
+==> sendLockoutResponse
+incrementLoginAttempts
+==> incrementLoginAttempts
+
+[hasTooManyLoginAttempts]
+【メソッド】
+ユーザーがログインを試して
+失敗した回数が定められた上限に達しているか
+を調べ、上限を越えるとtrueを返します。
+--
+関数:$this→limiter()→tooManyAttempts
+==> tooManyAttempts
+引数:$this→maxAttempts()
+==> maxAttempts
+
+[maxAttempts]
+【メソッド】
+ログインを試せる回数の上限
+defaultは5
+--
+
+[decayMinutes]
+【メソッド】
+時間間隔(単位は分)
+defaultは1
+--
+
+[sendLockoutResponse]
+【メソッド】
+ロックアウトされたと判断した後、
+ユーザーをリダイレクトする。
+--
+
+[incrementLoginAttempts]
+【メソッド】
+ログイン試行回数を1つ増やす。
+--
+
+[RateLimiter.php]
+【トレイト】
+--
+tooManyAttempts
+==> tooManyAttempts
+attempts
+==> attempts
+
+[tooManyAttempts]
+【メソッド】
+与えられたキーが何回「アクセス」
+されたかどうかを判断します。
+--
+$this→attempts($key)
+==> attempts
+$this→cache
+==> data
+
+[attempts]
+【メソッド】
+指定されたキーの試行回数を取得します。
+--
+
+[RedirectsUsers.php]
+【トレイト】
+--
+redirectPath
+==> redirectPath
+
+[redirectPath]
+【メソッド】
+--
+判定:method_exists($this, 'redirectTo')
+==> LoginControllerになし
+return $this→redirectTo();
+==> $redirectTo
+
+[resources]
+【ディレクトリ】
+--
+view
+==> view
+
+[view]
+【ディレクトリ】
+--
+auth
+==> auth
+
+[auth]
+【ディレクトリ】
+--
+login.blade.php
+==> login.blade.php
+
+[login.blade.php]
+【ビュー】
+--
+
+[storage]
+【ディレクトリ】
+--
+framework(2)
+==> framework(2)
+
+[framework(2)]
+【ディレクトリ】
+--
+cache
+==> data
+
+[data]
+【ディレクトリ】
+--
+
+[config]
+【ディレクトリ】
+--
+cache.php
+==> cache.php
+
+[cache.php]
+【PGM】
+--
+env('CACHE_DRIVER', 'file'),
+==> CACHE_DRIVER
+
+[.env]
+【環境変数】
+---
+CACHE_DRIVER
+==> CACHE_DRIVER
+
+[CACHE_DRIVER]
+【環境変数】
+--
+
+[LoginControllerになし]
