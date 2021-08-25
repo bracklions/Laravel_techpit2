@@ -30,8 +30,13 @@ class Article extends Model
             : false;
     }
 
-    public function getCountLikesAttribute(): int //get...Attributeはアレクサで、...の部分を$article->count_likesのように使える。()もいらないので、そういうカラムがあるかのように。
+    public function getCountLikesAttribute(): int //get...Attributeはアクセサで、...の部分を$article->count_likesのように使える。()もいらないので、そういうカラムがあるかのように。
     {
         return $this->likes->count();
+    }
+
+    public function tags(): BelongsToMany
+    {
+        return $this->belongsToMany('App\Tag')->withTimestamps();
     }
 }
